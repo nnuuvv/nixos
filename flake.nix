@@ -14,11 +14,12 @@
     # shitbox config
     nixosConfigurations.shitbox = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
+
       # Set all inputs as special args for all submodules
       specialArgs = { inherit inputs; };
       modules = [ 
+        ./hardware/shitbox.nix
         ./configuration.nix 
-        ./hardware-configuration-shitbox.nix
       ];
     };
 
