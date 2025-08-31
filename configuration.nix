@@ -115,6 +115,9 @@
     zoxide
     fzf
     vivaldi
+    xclip
+    python3
+    pipx
   ];
 
 
