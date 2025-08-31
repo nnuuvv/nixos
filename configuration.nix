@@ -116,8 +116,7 @@
     fzf
     vivaldi
     xclip
-    python3
-    uv
+    python310Full
   ];
 
 
