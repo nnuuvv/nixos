@@ -2,12 +2,10 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports = [ 
-    # Include the results of the hardware scan.
-    #./hardware-configuration.nix
   ];
 
   # Enable flakes and new CLI
@@ -103,11 +101,13 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    neovim
+    inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
+    gcc
     wget
     git
     curl
   ];
+
 
   # Set default editor to nvim
   environment.variables.EDITOR = "nvim";
