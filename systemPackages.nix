@@ -2,6 +2,7 @@
 {
   # add packages
   environment.systemPackages = with pkgs; [
+    inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
     git
     zsh
     zoxide
@@ -28,17 +29,8 @@
     xz
   ];
 
-  # nvim nightly
-  programs.neovim = {
-      enable = true;
-      package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
-  };
-
   # enable to ensure it works
   programs.zsh.enable = true;
-
-  # Install vivaldi.
-  programs.vivaldi.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
