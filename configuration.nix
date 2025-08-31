@@ -103,6 +103,9 @@
   environment.systemPackages = with pkgs; [
     inputs.neovim-nightly-overlay.packages.${pkgs.system}.default
     gcc
+    gleam
+    lua-language-server
+    nixd
     wget
     git
     curl
