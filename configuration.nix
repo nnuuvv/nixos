@@ -109,6 +109,8 @@
     wget
     git
     curl
+    zsh
+    zoxide
   ];
 
 
