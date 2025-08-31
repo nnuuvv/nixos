@@ -9,7 +9,7 @@
     fzf
     vivaldi
     xclip
-    python313.withPackages(ps: [ps.pynvim])
+    (python3.withPackages(ps: [ps.pynvim]))
 
     # lsp / compilers
     nixd
