@@ -87,10 +87,12 @@
     isNormalUser = true;
     description = "liv";
     extraGroups = [ "networkmanager" "wheel" "root" ];
+    shell = pkgs.zsh;
     packages = with pkgs; [
     #  thunderbird
     ];
   };
+  programs.zsh.enable = true;
 
   # Install firefox.
   programs.firefox.enable = true;
@@ -111,28 +113,12 @@
     curl
     zsh
     zoxide
+    fzf
   ];
 
 
   # Set default editor to nvim
   environment.variables.EDITOR = "nvim";
-
-
-#  nixpkgs.config = {
-#    packageOverrides = pkgs: let
-#      pkgs' = import <nixpkgs-unstable> {
-#        inherit (pkgs) system;
-#        overlays = [
-#          (import (builtins.fetchTarball {
-#            url = "https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz";
-#          }))
-#        ];
-#      };
-#    in {
-#      inherit (pkgs') neovim;
-#    };
-#  };
-
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
