@@ -117,7 +117,7 @@
     vivaldi
     xclip
     python3
-    pipx
+    uv
   ];
 
 
