@@ -116,7 +116,8 @@
     fzf
     vivaldi
     xclip
-    python310Full
+    python313
+    python313Packages.pynvim
   ];
 
 
