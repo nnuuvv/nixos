@@ -114,6 +114,7 @@
     zsh
     zoxide
     fzf
+    vivaldi
   ];
 
 
