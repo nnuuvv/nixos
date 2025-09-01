@@ -4,6 +4,6 @@
     nixd
     gleam
     lua-language-server
-    nixfmt
+    nixfmt-classic
   ];
 }
