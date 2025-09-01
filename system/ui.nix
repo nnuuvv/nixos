@@ -1,6 +1,4 @@
-{ inputs, pkgs, ... }: {
-  environment.systemPackages = with pkgs; [ vivaldi wezterm ];
-
+{ ... }: {
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
