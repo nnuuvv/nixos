@@ -1,5 +1,7 @@
-{ pkgs, ... }:
-{
+{ inputs, pkgs, ... }: {
+  programs.vivaldi = { enable = true; };
+  programs.wezterm = { enable = true; };
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 

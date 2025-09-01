@@ -17,21 +17,17 @@
 
       # Set all inputs as special args for all submodules
       specialArgs = { inherit inputs; };
-      modules = [ 
+      modules = [
+        { networking.hostName = "shitbox"; }
         ./hardware/shitbox.nix
-        ./configuration.nix 
+        ./configuration.nix
+
+        ./programs/nvim.nix
+        ./programs/ui.nix
+        ./programs/devtools.nix
+        ./programs/utils.nix
+        ./programs/zsh.nix
       ];
     };
-
-    # some other device
-    #nixosConfigurations.other-device = nixpkgs.lib.nixosSystem {
-    #  system = "x86_64-linux";
-       # Set all inputs as special args for all submodules
-    #  specialArgs = { inherit inputs; };
-    #  modules = [ 
-    #    ./configuration.nix 
-    #    ./hardware-configuration-other-device.nix
-    #  ];
-    #};
   };
 }

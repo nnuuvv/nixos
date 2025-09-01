@@ -1,14 +1,11 @@
-{ ... }:
-{
-  imports = [ 
-    ./systemPackages.nix
-    ./gui.nix
-    ./locale.nix
-    ./user.nix
-  ];
+{ inputs, ... }: {
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
 
   # Enable flakes and new CLI
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  imports = [ ./locale.nix ./user.nix ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -42,6 +39,5 @@
     #media-session.enable = true;
   };
 
-
-  system.stateVersion = "24.11"; 
+  system.stateVersion = "24.11";
 }
