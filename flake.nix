@@ -10,37 +10,49 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { nixpkgs, home-manager, ... }@inputs: {
-    # Used with `nixos-rebuild --flake .#<hostname>`
-    # nixosConfigurations."<hostname>".config.system.build.toplevel must be a derivation
-
-    # shitbox config
-    nixosConfigurations.shitbox = nixpkgs.lib.nixosSystem {
+  outputs = { nixpkgs, home-manager, ... }@inputs:
+    let
       system = "x86_64-linux";
+      lib = nixpkgs.lib;
+      pkgs = nixpkgs.legacyPackages.${system};
+    in {
 
-      # Set all inputs as special args for all submodules
-      specialArgs = { inherit inputs; };
+      # Used with `nixos-rebuild --flake .#<hostname>`
+      # nixosConfigurations."<hostname>".config.system.build.toplevel must be a derivation
 
-      modules = [
-        { networking.hostName = "shitbox"; }
-        ./hardware/shitbox.nix
-        ./system/ui.nix
-        ./system/utils.nix
-        ./system/audio.nix
-        ./system/zsh.nix
-        ./configuration.nix
+      # shitbox config
+      nixosConfigurations.shitbox = nixpkgs.lib.nixosSystem {
+        inherit system;
 
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.liv = ./home.nix;
-          home-manager.extraSpecialArgs = {
-            uiEnabled = true;
-            inherit inputs;
-          };
-        }
-      ];
+        # Set all inputs as special args for all submodules
+        specialArgs = { inherit inputs; };
+
+        modules = [
+          { networking.hostName = "shitbox"; }
+          ./hardware/shitbox.nix
+          ./system/ui.nix
+          ./system/utils.nix
+          ./system/audio.nix
+          ./system/zsh.nix
+          ./configuration.nix
+
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.liv = ./home.nix;
+            home-manager.extraSpecialArgs = {
+              uiEnabled = true;
+              inherit inputs;
+            };
+          }
+        ];
+      };
+      homeConfigurations = {
+        liv = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [ ./home.nix ];
+        };
+      };
     };
-  };
 }

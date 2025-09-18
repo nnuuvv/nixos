@@ -1,4 +1,4 @@
-{ ... }: {
+{ pkgs, ... }: {
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
@@ -14,4 +14,11 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
+
+  environment.systemPackages = with pkgs; [
+    gnome-control-center
+    gnome-extension-manager
+    gnome-tweaks
+  ];
+
 }
